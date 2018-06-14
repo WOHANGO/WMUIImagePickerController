@@ -15,7 +15,7 @@
 
 此封装含有Masonry，请自行修改
 
-
+<img src="https://github.com/WOHANGO/WZHImagePickerController/blob/master/imagepicker.png" width="40%" height="40%">
 
 
 ## 使用教程
