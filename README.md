@@ -1,7 +1,7 @@
-# ImagePickerController
+# ImagePickerController，适用于头像、剪切头像、相册选择、拍照选择……
 
 #### 项目介绍
-{**这是基于TZImagePickerController封装的相机和相册方法}
+**这是基于TZImagePickerController封装的相机和相册方法**
 
 #### 软件架构
 **话说在前，此demo使用[https://github.com/banchichen/TZImagePickerController](https://github.com/banchichen/TZImagePickerController)进行优化封装**
@@ -14,6 +14,8 @@
 
 
 此封装含有Masonry，请自行修改
+
+
 
 
 ## 使用教程

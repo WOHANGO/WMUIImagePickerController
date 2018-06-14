@@ -55,7 +55,7 @@
 }
 
 - (void)clickimageBtn:(UIButton *)button {
-    self.pickerView = [[WZHImagePickerController alloc] initWithType:WZHImagePickerTypeTakePhoto];
+    self.pickerView = [[WZHImagePickerController alloc] initWithType:WZHImagePickerTypeDefault];
     self.pickerView.photographBlock = ^(UIImage *cropImage) {
         [button setImage:cropImage forState:UIControlStateNormal];
     };
