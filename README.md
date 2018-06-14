@@ -5,11 +5,13 @@
 
 #### 软件架构
 **话说在前，此demo使用[https://github.com/banchichen/TZImagePickerController](https://github.com/banchichen/TZImagePickerController)进行优化封装**
-先对不住咯谭真同志😂😂😂😂
 
-作者谭真代码修改部分如下：
-"LxGridViewFlowLayout.h"      18-21行
-"LxGridViewFlowLayout.m"      80-96行
+** 先对不住咯谭真同志😂😂😂😂  **
+
+**作者谭真代码修改部分如下：**
+**"LxGridViewFlowLayout.h"      18-21行**
+**"LxGridViewFlowLayout.m"      80-96行**
+
 
 此封装含有Masonry，请自行修改
 
@@ -17,13 +19,16 @@
 ## 使用教程
 
 #### CocoaPods
-> pod 'TZImagePickerController'
->pod 'Masonry'
-将文档”WZHImagePicker“放入项目中,调用#import "WZHImagePickerController.h"即可实现
+```objc
+ pod 'TZImagePickerController'
+ pod 'Masonry'
+```
+**将文档”WZHImagePicker“放入项目中,调用#import "WZHImagePickerController.h"即可实现**
 
 
-##代码解释
+## 代码解释
 
+```objc
 /**
 ImagePicker类型
 
@@ -55,3 +60,4 @@ collcetionView下选择回调
 */
 @property (nonatomic, strong) myPhotographBlock photographBlock;
 
+```
