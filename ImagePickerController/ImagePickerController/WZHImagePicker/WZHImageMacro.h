@@ -12,8 +12,6 @@
 //-> 系统库
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-
-//-> cocoaPads
 #import <Masonry.h>
 #import <TZImagePickerController.h>
 #import <TZImagePickerController/UIView+Layout.h>

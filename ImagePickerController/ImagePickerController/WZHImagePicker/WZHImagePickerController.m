@@ -10,6 +10,7 @@
 #import "WZHImagePickerController.h"
 #import "LxGridViewFlowLayout.h"
 #import "WZHImagePickerCollectionViewCell.h"
+#import "WZHImageMacro.h"
 
 
 @interface WZHImagePickerController ()

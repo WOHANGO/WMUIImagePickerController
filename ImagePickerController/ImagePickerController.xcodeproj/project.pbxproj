@@ -32,7 +32,6 @@
 		F742F02C20D208D000F677D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F742F05220D209C800F677D0 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		F742F05320D209C800F677D0 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		F742F05520D20C8900F677D0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		F742F06720D20FD800F677D0 /* WZHImagePickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHImagePickerCollectionViewCell.h; sourceTree = "<group>"; };
 		F742F06820D20FD800F677D0 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
 		F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
@@ -98,7 +97,6 @@
 				F742F05220D209C800F677D0 /* MainViewController.h */,
 				F742F05320D209C800F677D0 /* MainViewController.m */,
 				F742F06620D20FBA00F677D0 /* WZHImagePicker */,
-				F742F05520D20C8900F677D0 /* PrefixHeader.pch */,
 				F742F02620D208D000F677D0 /* Assets.xcassets */,
 				F778B21F20D237A60078EBC9 /* Main.storyboard */,
 				F742F02820D208D000F677D0 /* LaunchScreen.storyboard */,
@@ -389,10 +387,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ULWV5246XL;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/ImagePickerController/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = ImagePickerController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "---.ImagePickerController";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -406,10 +407,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ULWV5246XL;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/ImagePickerController/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = ImagePickerController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "---.ImagePickerController";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

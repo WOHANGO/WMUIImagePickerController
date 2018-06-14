@@ -5,6 +5,7 @@
 
 #import "LxGridViewFlowLayout.h"
 #import "WZHImagePickerCollectionViewCell.h"
+#import "WZHImageMacro.h"
 
 #define stringify   __STRING
 

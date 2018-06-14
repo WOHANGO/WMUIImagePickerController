@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "WZHImagePickerController.h"
+#import <Masonry.h>
 
 
 @interface MainViewController ()
@@ -45,7 +46,7 @@
     
     UIButton *imageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     imageBtn.backgroundColor = [UIColor redColor];
-    imageBtn.frame = CGRectMake((kUIScreenWidth - 80) / 2, 70, 80, 80);
+    imageBtn.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 80) / 2, 70, 80, 80);
     [imageBtn addTarget:self action:@selector(clickimageBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:imageBtn];
     
