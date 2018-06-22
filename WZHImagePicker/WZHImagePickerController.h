@@ -42,14 +42,14 @@ typedef NS_ENUM(NSInteger, WZHImagePickerType) {
 
  @param collectionPhotos collectionView选择回调
  */
-typedef void(^myCollectionViewPickerBlock)(NSArray<UIImage *> *collectionPhotos);
+typedef void(^myCollectionViewPickerBlock)(NSArray<UIImage *> *collectionPhotos, BOOL isSelectOriginalPhoto);
 
 /**
  相册下选择照片回调
  
  @param photos 相册下选择照片回调
  */
-typedef void(^myAlbumsPickerBlock)(NSArray<UIImage *> *photos);
+typedef void(^myAlbumsPickerBlock)(NSArray<UIImage *> *photos, BOOL isSelectOriginalPhoto);
 
 /**
  拍照回调

@@ -214,7 +214,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
                 self.isSelectOriginalPhoto = isSelectOriginalPhoto;
                 [self.collectionView reloadData];
                 if (self.collectionBool) {
-                    self.collectionBlock(self.selectedPhotos);
+                    self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
                 }
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -246,7 +246,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     
     [self.collectionView reloadData];
     if (self.collectionBool) {
-        self.collectionBlock(self.selectedPhotos);
+        self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
     }
 }
 
@@ -266,7 +266,8 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
         imagePickerVc.selectedAssets = self.selectedAssets; // 目前已经选中的图片数组
     }
     
-    imagePickerVc.allowTakePicture = self.insideTakePhoto; // 在内部显示拍照按钮
+    imagePickerVc.allowTakePicture = self.insideTakePhoto;  // 在相册内能否拍摄照片
+    imagePickerVc.allowTakeVideo = self.insideTakeVideo;    // 在相册内能否拍摄视频
     
     
     // 3. Set allow picking video & photo & originalPhoto or not
@@ -291,7 +292,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         if (!self.collectionBool) {
-            self.albumsBlock(photos);
+            self.albumsBlock(photos, self.isSelectOriginalPhoto);
         }
     }];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -422,7 +423,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     [self.selectedPhotos addObject:image];
     [self.collectionView reloadData];
     if (self.collectionBool) {
-        self.collectionBlock(self.selectedPhotos);
+        self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
     }
     
     if ([asset isKindOfClass:[PHAsset class]]) {
@@ -477,7 +478,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
     [_collectionView reloadData];
     if (self.collectionBool) {
-        self.collectionBlock(self.selectedPhotos);
+        self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
     }
     
     // 1.打印图片名字
@@ -507,7 +508,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     }];
     [self.collectionView reloadData];
     if (self.collectionBool) {
-        self.collectionBlock(self.selectedPhotos);
+        self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
     }
 }
 
@@ -518,7 +519,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     self.selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
     [self.collectionView reloadData];
     if (self.collectionBool) {
-        self.collectionBlock(self.selectedPhotos);
+        self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
     }
 }
 
@@ -549,7 +550,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     } completion:^(BOOL finished) {
         [self.collectionView reloadData];
         if (self.collectionBool) {
-            self.collectionBlock(self.selectedPhotos);
+            self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
         }
     }];
 }
