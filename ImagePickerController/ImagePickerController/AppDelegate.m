@@ -9,6 +9,15 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
+//开发的时候打印，但是发布的时候不打印的NSLog
+#ifdef DEBUG
+#define kIsDevelopementAPP  YES
+#define NSLog(format, ...) printf("[%s] %s [第%d行] \n\t\t\t%s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+#else
+#define kIsDevelopementAPP  NO
+#define NSLog(format, ...)
+#endif
+
 @interface AppDelegate ()
 
 @end

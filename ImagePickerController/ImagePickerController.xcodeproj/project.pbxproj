@@ -15,6 +15,9 @@
 		F742F05420D209C800F677D0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F05320D209C800F677D0 /* MainViewController.m */; };
 		F742F06D20D20FD900F677D0 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */; };
 		F742F06F20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F06C20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m */; };
+		F74B1D5020DBEEA000CF21AB /* AliOSSUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D4F20DBEEA000CF21AB /* AliOSSUpload.m */; };
+		F74B1D5320DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */; };
+		F74B1D5620DC041000CF21AB /* IHUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5520DC041000CF21AB /* IHUtility.m */; };
 		F778B22020D237A60078EBC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F778B21F20D237A60078EBC9 /* Main.storyboard */; };
 		F778B22520D23C730078EBC9 /* WZHImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F778B22420D23C730078EBC9 /* WZHImagePickerController.m */; };
 /* End PBXBuildFile section */
@@ -36,6 +39,12 @@
 		F742F06820D20FD800F677D0 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
 		F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
 		F742F06C20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHImagePickerCollectionViewCell.m; sourceTree = "<group>"; };
+		F74B1D4E20DBEEA000CF21AB /* AliOSSUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliOSSUpload.h; sourceTree = "<group>"; };
+		F74B1D4F20DBEEA000CF21AB /* AliOSSUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliOSSUpload.m; sourceTree = "<group>"; };
+		F74B1D5120DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZHOSSAuthCredentialProvider.h; sourceTree = "<group>"; };
+		F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZHOSSAuthCredentialProvider.m; sourceTree = "<group>"; };
+		F74B1D5420DC040F00CF21AB /* IHUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHUtility.h; sourceTree = "<group>"; };
+		F74B1D5520DC041000CF21AB /* IHUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHUtility.m; sourceTree = "<group>"; };
 		F76B5E1D20D24B76004D00C7 /* WZHImageMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZHImageMacro.h; sourceTree = "<group>"; };
 		F778B21F20D237A60078EBC9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F778B22320D23C720078EBC9 /* WZHImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHImagePickerController.h; sourceTree = "<group>"; };
@@ -96,6 +105,7 @@
 				F742F01E20D208CF00F677D0 /* AppDelegate.m */,
 				F742F05220D209C800F677D0 /* MainViewController.h */,
 				F742F05320D209C800F677D0 /* MainViewController.m */,
+				F74B1D4D20DBEE6000CF21AB /* AliOSS */,
 				F742F06620D20FBA00F677D0 /* WZHImagePicker */,
 				F742F02620D208D000F677D0 /* Assets.xcassets */,
 				F778B21F20D237A60078EBC9 /* Main.storyboard */,
@@ -120,6 +130,19 @@
 			path = WZHImagePicker;
 			sourceTree = "<group>";
 		};
+		F74B1D4D20DBEE6000CF21AB /* AliOSS */ = {
+			isa = PBXGroup;
+			children = (
+				F74B1D5420DC040F00CF21AB /* IHUtility.h */,
+				F74B1D5520DC041000CF21AB /* IHUtility.m */,
+				F74B1D4E20DBEEA000CF21AB /* AliOSSUpload.h */,
+				F74B1D4F20DBEEA000CF21AB /* AliOSSUpload.m */,
+				F74B1D5120DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.h */,
+				F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */,
+			);
+			path = AliOSS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,7 +154,6 @@
 				F742F01620D208CF00F677D0 /* Sources */,
 				F742F01720D208CF00F677D0 /* Frameworks */,
 				F742F01820D208CF00F677D0 /* Resources */,
-				80B2B692B6B26EF0F694F167 /* [CP] Embed Pods Frameworks */,
 				4CF14E5A5B28764A967F5334 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -207,21 +229,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		80B2B692B6B26EF0F694F167 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AAE86A51FD4853E5FF23A07B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,12 +254,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F74B1D5020DBEEA000CF21AB /* AliOSSUpload.m in Sources */,
 				F742F02D20D208D000F677D0 /* main.m in Sources */,
 				F742F06D20D20FD900F677D0 /* LxGridViewFlowLayout.m in Sources */,
 				F778B22520D23C730078EBC9 /* WZHImagePickerController.m in Sources */,
 				F742F05420D209C800F677D0 /* MainViewController.m in Sources */,
 				F742F06F20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m in Sources */,
+				F74B1D5620DC041000CF21AB /* IHUtility.m in Sources */,
 				F742F01F20D208CF00F677D0 /* AppDelegate.m in Sources */,
+				F74B1D5320DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

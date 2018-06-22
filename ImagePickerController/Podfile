@@ -11,5 +11,7 @@ target 'ImagePickerController' do
    pod 'Masonry'
 
    pod 'TZImagePickerController'
+   
+   pod 'AliyunOSSiOS'
 
 end

@@ -9,7 +9,10 @@
 #import "MainViewController.h"
 #import "WZHImagePickerController.h"
 #import <Masonry.h>
+#import "AliOSSUpload.h"
 
+#define kUIScreenWidth ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.width)
+#define kUIScreenHeight ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.height)
 
 @interface MainViewController ()
 
@@ -26,10 +29,10 @@
         _pickerView.maxCount = 9;
         _pickerView.allowPickingVideo = YES;
         _pickerView.allowPickingGif = YES;
-        
-        _pickerView.collectionBlock = ^(NSArray<UIImage *> *collectionPhotos) {
-            NSLog(@"%@",collectionPhotos);
+        _pickerView.collectionBlock = ^(NSArray<UIImage *> *collectionPhotos, BOOL isSelectOriginalPhoto) {
+            
         };
+        
         [self.view addSubview:_pickerView];
         [_pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(200);
@@ -59,11 +62,21 @@
     self.pickerView.photographBlock = ^(UIImage *cropImage) {
         [button setImage:cropImage forState:UIControlStateNormal];
     };
-    self.pickerView.albumsBlock = ^(NSArray<UIImage *> *photos) {
+    self.pickerView.albumsBlock = ^(NSArray<UIImage *> *photos, BOOL isSelectOriginalPhoto) {
         [button setImage:photos[0] forState:UIControlStateNormal];
     };
     [self.view addSubview:self.pickerView];
 }
+
+/**
+ [[AliOSSUpload shareInstance] uploadImage:<NSArray<UIImage *> *photos> originalPhoto:isSelectOriginalPhoto success:^(NSString *obj) {
+ if ([obj intValue] == -1) {
+ NSLog(@"上传失败");
+ }else {
+ NSLog(@"%@",obj);
+ }
+ }];
+ **/
 
 
 
