@@ -1,5 +1,6 @@
-# ImagePickerController，适用于头像、剪切头像、相册选择、拍照选择……
+# ImagePickerController，适用于头像、剪切头像、相册选择、拍照选择……，已实现上传阿里OSS服务器功能
 
+##如果满意，请献上您的🌟🌟🌟🌟🌟🌟🌟🌟，谢谢
 #### 项目介绍
 **这是基于TZImagePickerController封装的相机和相册方法**
 
@@ -22,14 +23,16 @@
 
 #### CocoaPods
 ```objc
- pod 'TZImagePickerController'
  pod 'Masonry'
+ pod 'TZImagePickerController'    //调用相册选择器使用，不调用则不添加
+ pod 'AliyunOSSiOS'               //调用阿里OSS使用，不调用则不添加
 ```
-**将文档”WZHImagePicker“放入项目中,调用#import "WZHImagePickerController.h"即可实现**
+**如果要实现相册选择器功能，请将文档”WZHImagePicker“放入项目中,调用#import "WZHImagePickerController.h"即可实现**
+**如果要实现图片上传阿里云服务器功能，请将文档“AliOSS”放入项目中，调用#import "AliOSSUpload.h"即可实现**
 
 
-## 代码解释
-
+## 代码调用解释
+###相册选择器
 ```objc
 /**
 ImagePicker类型
@@ -63,3 +66,17 @@ collcetionView下选择回调
 @property (nonatomic, strong) myPhotographBlock photographBlock;
 
 ```
+
+###图片上传阿里云OSS
+```objc
+/**
+上传图片到阿里OSS
+
+@param imageArr 图片数组
+@param OriginalPhoto 是否为原图
+@param success 上传成功，返回url，失败返回：-1
+*/
+- (void)uploadImage:(NSArray<UIImage *> *)imageArr originalPhoto:(BOOL)OriginalPhoto success:(void (^)(NSString *obj))success;
+
+```
+
