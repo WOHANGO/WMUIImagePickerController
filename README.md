@@ -24,7 +24,7 @@
 #### CocoaPods
 ```objc
  pod 'Masonry'
- pod 'TZImagePickerController'    //调用相册选择器使用，不调用则不添加
+ pod 'TZImagePickerController','~> 3.0.2'    //调用相册选择器使用，不调用则不添加
  pod 'AliyunOSSiOS'               //调用阿里OSS使用，不调用则不添加
 ```
   **如果要实现相册选择器功能，请将文档”WZHImagePicker“放入项目中,调用#import "WZHImagePickerController.h"即可实现**
