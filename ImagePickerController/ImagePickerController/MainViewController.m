@@ -30,7 +30,7 @@
         _pickerView.allowPickingVideo = YES;
         _pickerView.allowPickingGif = YES;
         _pickerView.collectionBlock = ^(NSArray<UIImage *> *collectionPhotos, BOOL isSelectOriginalPhoto) {
-            
+
         };
         
         [self.view addSubview:_pickerView];

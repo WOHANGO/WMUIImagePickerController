@@ -61,6 +61,18 @@ typedef void(^myPhotographBlock)(UIImage *cropImage);
  */
 @property (nonatomic, strong) myPhotographBlock photographBlock;
 /**
+ navigationBar颜色
+ */
+@property (nonatomic, strong) UIColor *navigationBarColor;
+/**
+ 选择角标颜色
+ */
+@property (nonatomic, strong) UIColor *iconThemeColor;
+/**
+ 相册选择器按钮颜色
+ */
+@property (nonatomic, strong) UIColor *doneButtonColor;
+/**
  数量，默认1张
  */
 @property (nonatomic, assign) NSInteger maxCount;

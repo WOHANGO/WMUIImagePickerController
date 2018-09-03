@@ -79,6 +79,9 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     self.allowPickingMuitlpleGifOrVideo = YES;
     self.showSelectedIndex = YES;
     self.diameter = kUIScreenWidth;
+    self.navigationBarColor = [UIColor blackColor];
+    self.iconThemeColor = [UIColor brownColor];
+    self.doneButtonColor = [UIColor redColor];
 }
 
 - (UIImagePickerController *)imagePickerVC {
@@ -203,8 +206,9 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
             imagePickerVc.allowPickingGif = self.allowPickingGif;
             imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhoto;
             imagePickerVc.allowPickingMultipleVideo = self.allowPickingMuitlpleGifOrVideo;
-            imagePickerVc.showSelectedIndex = self.showSelectedIndex;
+            imagePickerVc.showSelectedIndex = NO;
             imagePickerVc.isSelectOriginalPhoto = self.isSelectOriginalPhoto;
+            imagePickerVc.iconThemeColor = self.iconThemeColor;
             [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 self.selectedPhotos = [NSMutableArray arrayWithArray:photos];
                 self.selectedAssets = [NSMutableArray arrayWithArray:assets];
@@ -267,15 +271,11 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     
     // 2. Set the appearance
     // 2. 在这里设置imagePickerVc的外观
-    // imagePickerVc.navigationBar.barTintColor = [UIColor greenColor];
-    // imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
-    // imagePickerVc.oKButtonTitleColorNormal = [UIColor greenColor];
-    // imagePickerVc.navigationBar.translucent = NO;
-    imagePickerVc.iconThemeColor = [UIColor colorWithRed:31 / 255.0 green:185 / 255.0 blue:34 / 255.0 alpha:1.0];
-    imagePickerVc.showPhotoCannotSelectLayer = YES;
-    imagePickerVc.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+     imagePickerVc.navigationBar.barTintColor = self.navigationBarColor;
+     imagePickerVc.navigationBar.translucent = NO;
+    imagePickerVc.iconThemeColor = self.iconThemeColor;
     [imagePickerVc setPhotoPickerPageUIConfigBlock:^(UICollectionView *collectionView, UIView *bottomToolBar, UIButton *previewButton, UIButton *originalPhotoButton, UILabel *originalPhotoLabel, UIButton *doneButton, UIImageView *numberImageView, UILabel *numberLabel, UIView *divideLine) {
-        [doneButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [doneButton setTitleColor:self.doneButtonColor forState:UIControlStateNormal];
     }];
     
     // 3. Set allow picking video & photo & originalPhoto or not
