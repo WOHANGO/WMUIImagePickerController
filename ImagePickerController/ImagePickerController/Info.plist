@@ -20,8 +20,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>NSCameraUsageDescription</key>
 	<string>访问相机以拍照</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -30,6 +28,8 @@
 	<string>访问麦克风以录像</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>访问相册以选择照片</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

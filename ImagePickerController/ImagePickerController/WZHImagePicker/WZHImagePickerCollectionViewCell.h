@@ -3,7 +3,7 @@
 //  TZImagePickerController
 //
 //  Created by 吳梓杭 on 4/5/18.
-//  Copyright © 2018年 吳梓杭QQ:905640505. All rights reserved.
+//  Copyright © 2018年 吳梓杭. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

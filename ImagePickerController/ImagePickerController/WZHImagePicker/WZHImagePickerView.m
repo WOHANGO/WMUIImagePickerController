@@ -1,19 +1,20 @@
 
 //
-//  WZHImagePickerController.m
-//  TZImagePickerController
+//  WZHImagePickerView
+//  WUIKit
 //
-//  Created by 吳梓杭 on 4/5/18.
+//  Created by 吳梓杭 on 3/9/18.
 //  Copyright © 2018年 吳梓杭. All rights reserved.
 //
 
-#import "WZHImagePickerController.h"
+#import "WZHImagePickerView.h"
 #import "LxGridViewFlowLayout.h"
 #import "WZHImagePickerCollectionViewCell.h"
 #import "WZHImageMacro.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 
-@interface WZHImagePickerController ()
+@interface WZHImagePickerView ()
 <TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, assign) BOOL collectionBool;                //不是collectionView:NO
@@ -29,7 +30,7 @@
 @end
 
 static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerCollectionViewCell";
-@implementation WZHImagePickerController
+@implementation WZHImagePickerView
 
 - (instancetype)initWithType:(NSInteger)type {
     if (self = [super init]) {
@@ -76,6 +77,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     self.allowPickingGif = NO;
     self.allowPickingOriginalPhoto = YES;
     self.allowPickingMuitlpleGifOrVideo = YES;
+    self.showSelectedIndex = YES;
     self.diameter = kUIScreenWidth;
 }
 
@@ -86,18 +88,10 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
         //改变相册选择页的导航栏外观
         _imagePickerVC.navigationBar.tintColor = self.viewController.navigationController.navigationBar.tintColor;
         UIBarButtonItem *tzBarItem, *BarItem;
-        if (iOS9Later) {
-            if (@available(iOS 9.0, *)) {
-                tzBarItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[TZImagePickerController class]]];
-            } else {
-                // Fallback on earlier versions
-            }
-            if (@available(iOS 9.0, *)) {
-                BarItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UIImagePickerController class]]];
-            } else {
-                // Fallback on earlier versions
-            }
-        }else {
+        if (@available(iOS 9, *)) {
+            tzBarItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[TZImagePickerController class]]];
+            BarItem = [UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UIImagePickerController class]]];
+        } else {
             tzBarItem = [UIBarButtonItem appearanceWhenContainedIn:[TZImagePickerController class], nil];
             BarItem = [UIBarButtonItem appearanceWhenContainedIn:[UIImagePickerController class], nil];
         }
@@ -121,8 +115,9 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         _layout = [[LxGridViewFlowLayout alloc] init];
+//        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _layout.longPressGestureBool = self.longPressGestureBool;
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) collectionViewLayout:_layout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:_layout];
         _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -188,7 +183,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
             ALAsset *alAsset = asset;
             isVideo = [[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
         }
-        if ([[asset valueForKey:@"filename"] tz_containsString:@"GIF"] && self.allowPickingGif && !self.allowPickingMuitlpleGifOrVideo) {
+        if ([[asset valueForKey:@"filename"] containsString:@"GIF"] && self.allowPickingGif && !self.allowPickingMuitlpleGifOrVideo) {
             TZGifPhotoPreviewController *vc = [[TZGifPhotoPreviewController alloc] init];
             TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:TZAssetModelMediaTypePhotoGif timeLength:@""];
             vc.model = model;
@@ -203,23 +198,21 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
                 [self.viewController presentViewController:vc animated:YES completion:nil];
             });
         } else { // preview photos / 预览照片
-            TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:self.selectedAssets selectedPhotos:self.selectedPhotos index:indexPath.row];
+            TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.item];
             imagePickerVc.maxImagesCount = self.maxCount;
             imagePickerVc.allowPickingGif = self.allowPickingGif;
+            imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhoto;
             imagePickerVc.allowPickingMultipleVideo = self.allowPickingMuitlpleGifOrVideo;
+            imagePickerVc.showSelectedIndex = self.showSelectedIndex;
             imagePickerVc.isSelectOriginalPhoto = self.isSelectOriginalPhoto;
             [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                 self.selectedPhotos = [NSMutableArray arrayWithArray:photos];
                 self.selectedAssets = [NSMutableArray arrayWithArray:assets];
                 self.isSelectOriginalPhoto = isSelectOriginalPhoto;
                 [self.collectionView reloadData];
-                if (self.collectionBool) {
-                    self.collectionBlock(self.selectedPhotos, self.isSelectOriginalPhoto);
-                }
+                self.collectionView.contentSize = CGSizeMake(0, ((self.selectedPhotos.count + 2) / 3 ) * (4 + (kUIScreenWidth - 50) / 4));
             }];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.viewController presentViewController:imagePickerVc animated:YES completion:nil];
-            });
+            [self.viewController presentViewController:imagePickerVc animated:YES completion:nil];
         }
     }
 }
@@ -268,7 +261,22 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     
     imagePickerVc.allowTakePicture = self.insideTakePhoto;  // 在相册内能否拍摄照片
     imagePickerVc.allowTakeVideo = self.insideTakeVideo;    // 在相册内能否拍摄视频
+    [imagePickerVc setUiImagePickerControllerSettingBlock:^(UIImagePickerController *imagePickerController) {
+        imagePickerController.videoQuality = UIImagePickerControllerQualityTypeHigh;
+    }];
     
+    // 2. Set the appearance
+    // 2. 在这里设置imagePickerVc的外观
+    // imagePickerVc.navigationBar.barTintColor = [UIColor greenColor];
+    // imagePickerVc.oKButtonTitleColorDisabled = [UIColor lightGrayColor];
+    // imagePickerVc.oKButtonTitleColorNormal = [UIColor greenColor];
+    // imagePickerVc.navigationBar.translucent = NO;
+    imagePickerVc.iconThemeColor = [UIColor colorWithRed:31 / 255.0 green:185 / 255.0 blue:34 / 255.0 alpha:1.0];
+    imagePickerVc.showPhotoCannotSelectLayer = YES;
+    imagePickerVc.cannotSelectLayerColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    [imagePickerVc setPhotoPickerPageUIConfigBlock:^(UICollectionView *collectionView, UIView *bottomToolBar, UIButton *previewButton, UIButton *originalPhotoButton, UILabel *originalPhotoLabel, UIButton *doneButton, UIImageView *numberImageView, UILabel *numberLabel, UIView *divideLine) {
+        [doneButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }];
     
     // 3. Set allow picking video & photo & originalPhoto or not
     // 3. 设置是否可以选择视频/图片/原图
@@ -277,6 +285,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhoto;   //原图，若allowPickingImage为No，值无效
     imagePickerVc.allowPickingGif = self.allowPickingGif;     //GIF
     imagePickerVc.allowPickingMultipleVideo =self.allowPickingMuitlpleGifOrVideo; // 是否可以多选视频
+    imagePickerVc.showSelectedIndex = self.showSelectedIndex;
     
     // 4. 照片排列按修改时间升序
     imagePickerVc.sortAscendingByModificationDate = self.sortAscending;
@@ -285,8 +294,12 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     imagePickerVc.showSelectBtn = NO;
     imagePickerVc.allowCrop = self.allowCrop;
     imagePickerVc.needCircleCrop = self.needCircleCrop;
+    if (self.needCircleCrop) {
+        imagePickerVc.allowCrop = YES;
+    }
     // 设置竖屏下的裁剪尺寸
     imagePickerVc.cropRect = CGRectMake((kUIScreenWidth - self.diameter) / 2, (kUIScreenHeight - self.diameter) / 2, self.diameter, self.diameter);
+    
     
     imagePickerVc.statusBarStyle = UIStatusBarStyleLightContent;
     
@@ -304,38 +317,24 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
 
 - (void)takePhoto {
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-    if ((authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) && iOS7Later) {
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied) {
         // 无相机权限 做一个友好的提示
-        if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
-            [alert show];
-        } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-        }
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法使用相机" message:@"请在iPhone的""设置-隐私-相机""中允许访问相机" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+        [alert show];
     } else if (authStatus == AVAuthorizationStatusNotDetermined) {
         // fix issue 466, 防止用户首次拍照拒绝授权时相机页黑屏
-        if (iOS7Later) {
-            [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-                if (granted) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self takePhoto];
-                    });
-                }
-            }];
-        } else {
-            [self takePhoto];
-        }
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if (granted) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self takePhoto];
+                });
+            }
+        }];
         // 拍照之前还需要检查相册权限
-    } else if ([TZImageManager authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
-        if (iOS8Later) {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
-            [alert show];
-        } else {
-            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-        }
-    } else if ([TZImageManager authorizationStatus] == 0) { // 未请求过相册权限
+    } else if ([PHPhotoLibrary authorizationStatus] == 2) { // 已被拒绝，没有相册权限，将无法保存拍的照片
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"无法访问相册" message:@"请在iPhone的""设置-隐私-相册""中允许访问相册" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+        [alert show];
+    } else if ([PHPhotoLibrary authorizationStatus] == 0) { // 未请求过相册权限
         [[TZImageManager manager] requestAuthorizationWithCompletion:^{
             [self takePhoto];
         }];
@@ -356,17 +355,25 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     }];
     
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
         self.imagePickerVC.sourceType = sourceType;
-        if(iOS8Later) {
-            self.imagePickerVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        NSMutableArray *mediaTypes = [NSMutableArray array];
+        if (self.insideTakeVideo) {
+            [mediaTypes addObject:(NSString *)kUTTypeMovie];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.viewController presentViewController:self.imagePickerVC animated:YES completion:nil];
-        });
+        if (self.insideTakePhoto) {
+            [mediaTypes addObject:(NSString *)kUTTypeImage];
+        }
+        if (mediaTypes.count) {
+            self.imagePickerVC.mediaTypes = mediaTypes;
+        }
+        self.imagePickerVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self.viewController presentViewController:self.imagePickerVC animated:YES completion:nil];
     } else {
         NSLog(@"模拟器中无法打开照相机,请在真机中使用");
     }
+    
 }
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -381,7 +388,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
         
         // save photo and get asset / 保存图片，获取到asset
-        [[TZImageManager manager] savePhotoWithImage:image location:self.location completion:^(NSError *error){
+        [[TZImageManager manager] savePhotoWithImage:image location:self.location completion:^(PHAsset *asset, NSError *error){
             if (error) {
                 [tzImagePickerVc hideProgressHUD];
                 NSLog(@"图片保存失败 %@",error);
@@ -393,7 +400,7 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
                         if (tzImagePickerVc.sortAscendingByModificationDate) {
                             assetModel = [models lastObject];
                         }
-                        if (self.allowCrop) { // 允许裁剪,去裁剪
+                        if (self.allowCrop || self.needCircleCrop) { // 允许裁剪,去裁剪
                             TZImagePickerController *imagePicker = [[TZImagePickerController alloc] initCropTypeWithAsset:assetModel.asset photo:image completion:^(UIImage *cropImage, id asset) {
                                 [self refreshCollectionViewWithAddedAsset:asset image:cropImage];
                                 if (!self.collectionBool) {
@@ -484,10 +491,8 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
     // 1.打印图片名字
     [self printAssetsName:assets];
     // 2.图片位置信息
-    if (iOS8Later) {
-        for (PHAsset *phAsset in assets) {
-            NSLog(@"location:%@",phAsset.location);
-        }
+    for (PHAsset *phAsset in assets) {
+        NSLog(@"location:%@",phAsset.location);
     }
 }
 
@@ -562,18 +567,11 @@ static NSString *const WZHImagePickerCollectionViewCellID = @"WZHImagePickerColl
 /// 打印图片名字
 - (void)printAssetsName:(NSArray *)assets {
     NSString *fileName;
-    for (id asset in assets) {
-        if ([asset isKindOfClass:[PHAsset class]]) {
-            PHAsset *phAsset = (PHAsset *)asset;
-            fileName = [phAsset valueForKey:@"filename"];
-        } else if ([asset isKindOfClass:[ALAsset class]]) {
-            ALAsset *alAsset = (ALAsset *)asset;
-            fileName = alAsset.defaultRepresentation.filename;;
-        }
+    for (PHAsset *asset in assets) {
+        fileName = [asset valueForKey:@"filename"];
         // NSLog(@"图片名字:%@",fileName);
     }
 }
-
 
 #pragma mark - YYKit中的UIViewController处理
 - (UIViewController *)viewController {

@@ -19,7 +19,7 @@
 		F74B1D5320DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */; };
 		F74B1D5620DC041000CF21AB /* IHUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5520DC041000CF21AB /* IHUtility.m */; };
 		F778B22020D237A60078EBC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F778B21F20D237A60078EBC9 /* Main.storyboard */; };
-		F778B22520D23C730078EBC9 /* WZHImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F778B22420D23C730078EBC9 /* WZHImagePickerController.m */; };
+		F778B22520D23C730078EBC9 /* WZHImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F778B22420D23C730078EBC9 /* WZHImagePickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +47,8 @@
 		F74B1D5520DC041000CF21AB /* IHUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHUtility.m; sourceTree = "<group>"; };
 		F76B5E1D20D24B76004D00C7 /* WZHImageMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZHImageMacro.h; sourceTree = "<group>"; };
 		F778B21F20D237A60078EBC9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F778B22320D23C720078EBC9 /* WZHImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHImagePickerController.h; sourceTree = "<group>"; };
-		F778B22420D23C730078EBC9 /* WZHImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHImagePickerController.m; sourceTree = "<group>"; };
+		F778B22320D23C720078EBC9 /* WZHImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHImagePickerView.h; sourceTree = "<group>"; };
+		F778B22420D23C730078EBC9 /* WZHImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHImagePickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +123,8 @@
 				F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */,
 				F742F06720D20FD800F677D0 /* WZHImagePickerCollectionViewCell.h */,
 				F742F06C20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m */,
-				F778B22320D23C720078EBC9 /* WZHImagePickerController.h */,
-				F778B22420D23C730078EBC9 /* WZHImagePickerController.m */,
+				F778B22320D23C720078EBC9 /* WZHImagePickerView.h */,
+				F778B22420D23C730078EBC9 /* WZHImagePickerView.m */,
 				F76B5E1D20D24B76004D00C7 /* WZHImageMacro.h */,
 			);
 			path = WZHImagePicker;
@@ -154,7 +154,7 @@
 				F742F01620D208CF00F677D0 /* Sources */,
 				F742F01720D208CF00F677D0 /* Frameworks */,
 				F742F01820D208CF00F677D0 /* Resources */,
-				4CF14E5A5B28764A967F5334 /* [CP] Copy Pods Resources */,
+				C97EC303ED341EB9B662B11D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,24 +211,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4CF14E5A5B28764A967F5334 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh",
-				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AAE86A51FD4853E5FF23A07B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,6 +229,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C97EC303ED341EB9B662B11D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -257,7 +257,7 @@
 				F74B1D5020DBEEA000CF21AB /* AliOSSUpload.m in Sources */,
 				F742F02D20D208D000F677D0 /* main.m in Sources */,
 				F742F06D20D20FD900F677D0 /* LxGridViewFlowLayout.m in Sources */,
-				F778B22520D23C730078EBC9 /* WZHImagePickerController.m in Sources */,
+				F778B22520D23C730078EBC9 /* WZHImagePickerView.m in Sources */,
 				F742F05420D209C800F677D0 /* MainViewController.m in Sources */,
 				F742F06F20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m in Sources */,
 				F74B1D5620DC041000CF21AB /* IHUtility.m in Sources */,

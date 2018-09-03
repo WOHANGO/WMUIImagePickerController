@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "WZHImagePickerController.h"
+#import "WZHImagePickerView.h"
 #import <Masonry.h>
 #import "AliOSSUpload.h"
 
@@ -16,16 +16,16 @@
 
 @interface MainViewController ()
 
-@property (nonatomic, strong) WZHImagePickerController *pickerView;
+@property (nonatomic, strong) WZHImagePickerView *pickerView;
 
 @end
 
 @implementation MainViewController
 
 
-- (WZHImagePickerController *)pickerView {
+- (WZHImagePickerView *)pickerView {
     if (!_pickerView) {
-        _pickerView = [[WZHImagePickerController alloc] initWithType:WZHImagePickerTypeCollectionView];
+        _pickerView = [[WZHImagePickerView alloc] initWithType:WZHImagePickerTypelongPressGestureCollectionView];
         _pickerView.maxCount = 9;
         _pickerView.allowPickingVideo = YES;
         _pickerView.allowPickingGif = YES;
@@ -36,7 +36,7 @@
         [self.view addSubview:_pickerView];
         [_pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(200);
-            make.bottom.equalTo(self.view).offset(-0);
+            make.bottom.equalTo(self.view).offset(-30);
             make.left.right.equalTo(self.view);
         }];
     }
@@ -58,7 +58,7 @@
 }
 
 - (void)clickimageBtn:(UIButton *)button {
-    self.pickerView = [[WZHImagePickerController alloc] initWithType:WZHImagePickerTypeDefault];
+    self.pickerView = [[WZHImagePickerView alloc] initWithType:WZHImagePickerTypeDefault];
     self.pickerView.photographBlock = ^(UIImage *cropImage) {
         [button setImage:cropImage forState:UIControlStateNormal];
     };
@@ -77,7 +77,5 @@
  }
  }];
  **/
-
-
 
 @end

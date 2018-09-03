@@ -2,7 +2,7 @@ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AliyunOSSiOS" "${PODS_ROOT}/Headers/Public/Masonry" "${PODS_ROOT}/Headers/Public/TZImagePickerController"
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/AliyunOSSiOS" "${PODS_CONFIGURATION_BUILD_DIR}/Masonry" "${PODS_CONFIGURATION_BUILD_DIR}/TZImagePickerController"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AliyunOSSiOS" -isystem "${PODS_ROOT}/Headers/Public/Masonry" -isystem "${PODS_ROOT}/Headers/Public/TZImagePickerController"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"AliyunOSSiOS" -l"Masonry" -l"TZImagePickerController" -l"resolv" -framework "AssetsLibrary" -framework "CoreTelephony" -framework "Foundation" -framework "Photos" -framework "SystemConfiguration" -framework "UIKit"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"AliyunOSSiOS" -l"Masonry" -l"TZImagePickerController" -l"resolv" -framework "CoreTelephony" -framework "Foundation" -framework "Photos" -framework "SystemConfiguration" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

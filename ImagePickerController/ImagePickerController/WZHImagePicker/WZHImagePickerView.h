@@ -1,22 +1,10 @@
 //
-//  WZHImagePickerController.h
-//  TZImagePickerController
+//  WZHImagePickerView.h
+//  WUIKit
 //
-//  Created by 吳梓杭 on 4/5/18.
-//  Copyright © 2018年 吳梓杭QQ:905640505. All rights reserved.
+//  Created by 吳梓杭 on 3/9/18.
+//  Copyright © 2018年 吳梓杭. All rights reserved.
 //
-/**
- 
- 话说在前，此demo使用https://github.com/banchichen/TZImagePickerController进行优化封装
- 如谭真同志想弄我，那就弄吧😂😂😂😂
- 
- 作者谭真代码修改部分如下：
- "LxGridViewFlowLayout.h"      18-21行
- "LxGridViewFlowLayout.m"      80-96行
- 
- 此封装含有Masonry，请自行修改
- 
- */
 
 #import <UIKit/UIKit.h>
 
@@ -58,7 +46,7 @@ typedef void(^myAlbumsPickerBlock)(NSArray<UIImage *> *photos, BOOL isSelectOrig
  */
 typedef void(^myPhotographBlock)(UIImage *cropImage);
 
-@interface WZHImagePickerController : UIView
+@interface WZHImagePickerView : UIView
 
 /**
  collcetionView下选择回调
@@ -105,11 +93,15 @@ typedef void(^myPhotographBlock)(UIImage *cropImage);
  */
 @property (nonatomic, assign) BOOL allowPickingOriginalPhoto;
 /**
+ 是否显示选择顺序，默认YES
+ */
+@property (nonatomic, assign) BOOL showSelectedIndex;
+/**
  是否多选GIF或视频，默认YES
  */
 @property (nonatomic, assign) BOOL allowPickingMuitlpleGifOrVideo;
 /**
- 是否允许裁剪，默认NO
+ 是否方形裁剪，默认NO
  */
 @property (nonatomic, assign) BOOL allowCrop;
 /**
@@ -117,7 +109,7 @@ typedef void(^myPhotographBlock)(UIImage *cropImage);
  */
 @property (nonatomic, assign) BOOL needCircleCrop;
 /**
- 裁剪直径，默认[UIScreen mainScreen].bounds.size.width
+ 裁剪直径，默认self.size.width
  */
 @property (nonatomic, assign) float diameter;
 

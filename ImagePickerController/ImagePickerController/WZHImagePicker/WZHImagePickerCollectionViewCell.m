@@ -4,14 +4,11 @@
 //  TZImagePickerController
 //
 //  Created by 吳梓杭 on 4/5/18.
-//  Copyright © 2018年 吳梓杭QQ:905640505. All rights reserved.
+//  Copyright © 2018年 吳梓杭. All rights reserved.
 //
 
 #import "WZHImagePickerCollectionViewCell.h"
 #import "WZHImageMacro.h"
-
-#define kUIScreenWidth ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.width / [UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.width)
-#define kUIScreenHeight ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] ? [UIScreen mainScreen].nativeBounds.size.height / [UIScreen mainScreen].nativeScale : [UIScreen mainScreen].bounds.size.height)
 
 @implementation WZHImagePickerCollectionViewCell
 
@@ -95,7 +92,7 @@
     if ([asset isKindOfClass:[PHAsset class]]) {
         PHAsset *phAsset = asset;
         _videoImageView.hidden = phAsset.mediaType != PHAssetMediaTypeVideo;
-        _gifLable.hidden = ![[phAsset valueForKey:@"filename"] tz_containsString:@"GIF"];
+        _gifLable.hidden = ![[phAsset valueForKey:@"filename"] containsString:@"GIF"];
     } else if ([asset isKindOfClass:[ALAsset class]]) {
         ALAsset *alAsset = asset;
         _videoImageView.hidden = ![[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
