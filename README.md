@@ -5,13 +5,7 @@
 **这是基于TZImagePickerController封装的相机和相册方法**
 
 #### 软件架构
-**话说在前，此demo使用[https://github.com/banchichen/TZImagePickerController](https://github.com/banchichen/TZImagePickerController)进行优化封装**
-
- 先对不住咯谭真同志😂😂😂😂  
-
-**作者谭真代码修改部分如下：**
-<br>"LxGridViewFlowLayout.h"      18-21行</br>
-<br>"LxGridViewFlowLayout.m"      80-96行</br>
+**话说在前，此demo的照片选择器使用[https://github.com/banchichen/TZImagePickerController](https://github.com/banchichen/TZImagePickerController)进行优化封装**
 
 
 此封装含有Masonry，请自行修改
