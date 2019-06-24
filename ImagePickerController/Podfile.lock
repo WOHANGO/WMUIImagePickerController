@@ -1,7 +1,7 @@
 PODS:
   - AliyunOSSiOS (2.10.4)
   - Masonry (1.1.0)
-  - TZImagePickerController (3.0.2)
+  - TZImagePickerController (3.0.9)
 
 DEPENDENCIES:
   - AliyunOSSiOS
@@ -17,8 +17,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AliyunOSSiOS: e5dcdba99963ca6b43fea863cead49423c5d4c75
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  TZImagePickerController: c6736038f5016a8be14132fd07e4e92ce6496385
+  TZImagePickerController: ea3e906af8caa7088f612ad673feb73cc6aa6bfc
 
-PODFILE CHECKSUM: feb8dbc81df226e91cf5497ad4d141f6af9d4841
+PODFILE CHECKSUM: b90a573e3ded9b7200311fdddeaff8fe940ba0fb
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

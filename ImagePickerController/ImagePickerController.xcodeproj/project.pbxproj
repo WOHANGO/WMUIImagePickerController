@@ -13,13 +13,17 @@
 		F742F02A20D208D000F677D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F742F02820D208D000F677D0 /* LaunchScreen.storyboard */; };
 		F742F02D20D208D000F677D0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F02C20D208D000F677D0 /* main.m */; };
 		F742F05420D209C800F677D0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F05320D209C800F677D0 /* MainViewController.m */; };
-		F742F06D20D20FD900F677D0 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */; };
-		F742F06F20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F742F06C20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m */; };
 		F74B1D5020DBEEA000CF21AB /* AliOSSUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D4F20DBEEA000CF21AB /* AliOSSUpload.m */; };
-		F74B1D5320DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */; };
+		F74B1D5320DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5220DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.m */; };
 		F74B1D5620DC041000CF21AB /* IHUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F74B1D5520DC041000CF21AB /* IHUtility.m */; };
+		F764A37722C078DC008CF2A5 /* To_choose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F764A36F22C078DC008CF2A5 /* To_choose@3x.png */; };
+		F764A37822C078DC008CF2A5 /* WMUIImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F764A37122C078DC008CF2A5 /* WMUIImagePickerView.m */; };
+		F764A37922C078DC008CF2A5 /* To_choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F764A37222C078DC008CF2A5 /* To_choose@2x.png */; };
+		F764A37A22C078DC008CF2A5 /* add_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F764A37322C078DC008CF2A5 /* add_btn@2x.png */; };
+		F764A37B22C078DC008CF2A5 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F764A37422C078DC008CF2A5 /* LxGridViewFlowLayout.m */; };
+		F764A37C22C078DC008CF2A5 /* add_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F764A37522C078DC008CF2A5 /* add_btn@3x.png */; };
+		F764A37D22C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F764A37622C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.m */; };
 		F778B22020D237A60078EBC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F778B21F20D237A60078EBC9 /* Main.storyboard */; };
-		F778B22520D23C730078EBC9 /* WZHImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F778B22420D23C730078EBC9 /* WZHImagePickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,20 +39,24 @@
 		F742F02C20D208D000F677D0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F742F05220D209C800F677D0 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		F742F05320D209C800F677D0 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		F742F06720D20FD800F677D0 /* WZHImagePickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHImagePickerCollectionViewCell.h; sourceTree = "<group>"; };
-		F742F06820D20FD800F677D0 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
-		F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
-		F742F06C20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHImagePickerCollectionViewCell.m; sourceTree = "<group>"; };
 		F74B1D4E20DBEEA000CF21AB /* AliOSSUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliOSSUpload.h; sourceTree = "<group>"; };
 		F74B1D4F20DBEEA000CF21AB /* AliOSSUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliOSSUpload.m; sourceTree = "<group>"; };
-		F74B1D5120DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZHOSSAuthCredentialProvider.h; sourceTree = "<group>"; };
-		F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WZHOSSAuthCredentialProvider.m; sourceTree = "<group>"; };
+		F74B1D5120DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMUIOSSAuthCredentialProvider.h; sourceTree = "<group>"; };
+		F74B1D5220DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMUIOSSAuthCredentialProvider.m; sourceTree = "<group>"; };
 		F74B1D5420DC040F00CF21AB /* IHUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHUtility.h; sourceTree = "<group>"; };
 		F74B1D5520DC041000CF21AB /* IHUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IHUtility.m; sourceTree = "<group>"; };
-		F76B5E1D20D24B76004D00C7 /* WZHImageMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WZHImageMacro.h; sourceTree = "<group>"; };
+		F764A36C22C078DC008CF2A5 /* WMUIImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUIImagePickerView.h; sourceTree = "<group>"; };
+		F764A36D22C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUIImagePickerCollectionViewCell.h; sourceTree = "<group>"; };
+		F764A36E22C078DC008CF2A5 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
+		F764A36F22C078DC008CF2A5 /* To_choose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "To_choose@3x.png"; sourceTree = "<group>"; };
+		F764A37022C078DC008CF2A5 /* WMUIImageMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUIImageMacro.h; sourceTree = "<group>"; };
+		F764A37122C078DC008CF2A5 /* WMUIImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUIImagePickerView.m; sourceTree = "<group>"; };
+		F764A37222C078DC008CF2A5 /* To_choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "To_choose@2x.png"; sourceTree = "<group>"; };
+		F764A37322C078DC008CF2A5 /* add_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_btn@2x.png"; sourceTree = "<group>"; };
+		F764A37422C078DC008CF2A5 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
+		F764A37522C078DC008CF2A5 /* add_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_btn@3x.png"; sourceTree = "<group>"; };
+		F764A37622C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUIImagePickerCollectionViewCell.m; sourceTree = "<group>"; };
 		F778B21F20D237A60078EBC9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F778B22320D23C720078EBC9 /* WZHImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZHImagePickerView.h; sourceTree = "<group>"; };
-		F778B22420D23C730078EBC9 /* WZHImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZHImagePickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +113,8 @@
 				F742F01E20D208CF00F677D0 /* AppDelegate.m */,
 				F742F05220D209C800F677D0 /* MainViewController.h */,
 				F742F05320D209C800F677D0 /* MainViewController.m */,
+				F764A36B22C078DC008CF2A5 /* WMUIImagePicker */,
 				F74B1D4D20DBEE6000CF21AB /* AliOSS */,
-				F742F06620D20FBA00F677D0 /* WZHImagePicker */,
 				F742F02620D208D000F677D0 /* Assets.xcassets */,
 				F778B21F20D237A60078EBC9 /* Main.storyboard */,
 				F742F02820D208D000F677D0 /* LaunchScreen.storyboard */,
@@ -116,20 +124,6 @@
 			path = ImagePickerController;
 			sourceTree = "<group>";
 		};
-		F742F06620D20FBA00F677D0 /* WZHImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				F742F06820D20FD800F677D0 /* LxGridViewFlowLayout.h */,
-				F742F06920D20FD900F677D0 /* LxGridViewFlowLayout.m */,
-				F742F06720D20FD800F677D0 /* WZHImagePickerCollectionViewCell.h */,
-				F742F06C20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m */,
-				F778B22320D23C720078EBC9 /* WZHImagePickerView.h */,
-				F778B22420D23C730078EBC9 /* WZHImagePickerView.m */,
-				F76B5E1D20D24B76004D00C7 /* WZHImageMacro.h */,
-			);
-			path = WZHImagePicker;
-			sourceTree = "<group>";
-		};
 		F74B1D4D20DBEE6000CF21AB /* AliOSS */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,10 +131,28 @@
 				F74B1D5520DC041000CF21AB /* IHUtility.m */,
 				F74B1D4E20DBEEA000CF21AB /* AliOSSUpload.h */,
 				F74B1D4F20DBEEA000CF21AB /* AliOSSUpload.m */,
-				F74B1D5120DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.h */,
-				F74B1D5220DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m */,
+				F74B1D5120DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.h */,
+				F74B1D5220DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.m */,
 			);
 			path = AliOSS;
+			sourceTree = "<group>";
+		};
+		F764A36B22C078DC008CF2A5 /* WMUIImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				F764A37322C078DC008CF2A5 /* add_btn@2x.png */,
+				F764A37522C078DC008CF2A5 /* add_btn@3x.png */,
+				F764A37222C078DC008CF2A5 /* To_choose@2x.png */,
+				F764A36F22C078DC008CF2A5 /* To_choose@3x.png */,
+				F764A37022C078DC008CF2A5 /* WMUIImageMacro.h */,
+				F764A36C22C078DC008CF2A5 /* WMUIImagePickerView.h */,
+				F764A37122C078DC008CF2A5 /* WMUIImagePickerView.m */,
+				F764A36D22C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.h */,
+				F764A37622C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.m */,
+				F764A36E22C078DC008CF2A5 /* LxGridViewFlowLayout.h */,
+				F764A37422C078DC008CF2A5 /* LxGridViewFlowLayout.m */,
+			);
+			path = WMUIImagePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +166,7 @@
 				F742F01620D208CF00F677D0 /* Sources */,
 				F742F01720D208CF00F677D0 /* Frameworks */,
 				F742F01820D208CF00F677D0 /* Resources */,
-				C97EC303ED341EB9B662B11D /* [CP] Copy Pods Resources */,
+				3E552CC68C622F49C11F6C55 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,15 +214,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F764A37C22C078DC008CF2A5 /* add_btn@3x.png in Resources */,
 				F742F02A20D208D000F677D0 /* LaunchScreen.storyboard in Resources */,
+				F764A37922C078DC008CF2A5 /* To_choose@2x.png in Resources */,
+				F764A37722C078DC008CF2A5 /* To_choose@3x.png in Resources */,
 				F742F02720D208D000F677D0 /* Assets.xcassets in Resources */,
 				F778B22020D237A60078EBC9 /* Main.storyboard in Resources */,
+				F764A37A22C078DC008CF2A5 /* add_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3E552CC68C622F49C11F6C55 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AAE86A51FD4853E5FF23A07B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -229,24 +267,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C97EC303ED341EB9B662B11D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh",
-				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerController/Pods-ImagePickerController-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -256,13 +276,13 @@
 			files = (
 				F74B1D5020DBEEA000CF21AB /* AliOSSUpload.m in Sources */,
 				F742F02D20D208D000F677D0 /* main.m in Sources */,
-				F742F06D20D20FD900F677D0 /* LxGridViewFlowLayout.m in Sources */,
-				F778B22520D23C730078EBC9 /* WZHImagePickerView.m in Sources */,
 				F742F05420D209C800F677D0 /* MainViewController.m in Sources */,
-				F742F06F20D20FD900F677D0 /* WZHImagePickerCollectionViewCell.m in Sources */,
 				F74B1D5620DC041000CF21AB /* IHUtility.m in Sources */,
+				F764A37B22C078DC008CF2A5 /* LxGridViewFlowLayout.m in Sources */,
+				F764A37D22C078DC008CF2A5 /* WMUIImagePickerCollectionViewCell.m in Sources */,
 				F742F01F20D208CF00F677D0 /* AppDelegate.m in Sources */,
-				F74B1D5320DBEF1000CF21AB /* WZHOSSAuthCredentialProvider.m in Sources */,
+				F764A37822C078DC008CF2A5 /* WMUIImagePickerView.m in Sources */,
+				F74B1D5320DBEF1000CF21AB /* WMUIOSSAuthCredentialProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,10 +416,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ULWV5246XL;
+				DEVELOPMENT_TEAM = 8A4V8PC26W;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = ImagePickerController/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,10 +436,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ULWV5246XL;
+				DEVELOPMENT_TEAM = 8A4V8PC26W;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = ImagePickerController/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

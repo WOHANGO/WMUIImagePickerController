@@ -18,10 +18,10 @@
 #### CocoaPods
 ```objc
  pod 'Masonry'
- pod 'TZImagePickerController','~> 3.0.2'    //调用相册选择器使用，不调用则不添加
+ pod 'TZImagePickerController','~> 3.0.9'    //调用相册选择器使用，不调用则不添加
  pod 'AliyunOSSiOS'               //调用阿里OSS使用，不调用则不添加
 ```
-  **如果要实现相册选择器功能，请将文档”WZHImagePicker“放入项目中,调用#import "WZHImagePickerController.h"即可实现**
+  **如果要实现相册选择器功能，请将文档”WMUIImagePicker“放入项目中,调用#import "WMUIImagePickerView.h"即可实现**
 
   **如果要实现图片上传阿里云服务器功能，请将文档“AliOSS”放入项目中，调用#import "AliOSSUpload.h"即可实现**
 
@@ -32,18 +32,22 @@
 /**
 ImagePicker类型
 
-- WZHImagePickerTypeDefault: 默认样式，不创建列表
-- WZHImagePickerTypeTakePhoto: 相机
-- WZHImagePickerTypeAlbum: 相册
-- WZHImagePickerTypeCollectionView: collcetionView样式
-- WZHImagePickerTypelongPressGestureCollectionView: collcetionView样式,含有长按
+- WMUIImagePickerTypeDefault: 默认样式，不创建列表
+- WMUIImagePickerTypeTakePhoto: 相机
+- WMUIImagePickerTypeAlbum: 相册
+- WMUIImagePickerTypeCollectionView: collcetionView样式
+- WMUIImagePickerTypelongPressGestureCollectionView: collcetionView样式,含有长按
+- WMUIImagePickerTypeHorizontalCollectionView: collcetionView横向滚动样式
+- WMUIImagePickerTypelongPressGestureHorizontalCollectionView: collcetionView横向滚动样式,含有长按
 */
-typedef NS_ENUM(NSInteger, WZHImagePickerType) {
-WZHImagePickerTypeDefault,
-WZHImagePickerTypeTakePhoto,
-WZHImagePickerTypeAlbum,
-WZHImagePickerTypeCollectionView,
-WZHImagePickerTypelongPressGestureCollectionView,
+typedef NS_ENUM(NSInteger, WMUIImagePickerType) {
+WMUIImagePickerTypeDefault,
+WMUIImagePickerTypeTakePhoto,
+WMUIImagePickerTypeAlbum,
+WMUIImagePickerTypeCollectionView,
+WMUIImagePickerTypelongPressGestureCollectionView,
+WMUIImagePickerTypeHorizontalCollectionView,
+WMUIImagePickerTypelongPressGestureHorizontalCollectionView,
 };
 
 
@@ -65,13 +69,40 @@ collcetionView下选择回调
 ###图片上传阿里云OSS
 ```objc
 /**
-上传图片到阿里OSS
+异步单张图片上传
 
-@param imageArr 图片数组
-@param OriginalPhoto 是否为原图
-@param success 上传成功，返回url，失败返回：-1
+@param image 图片
+@param originalPhoto 是否原图
+@param complete 回调
 */
-- (void)uploadImage:(NSArray<UIImage *> *)imageArr originalPhoto:(BOOL)OriginalPhoto success:(void (^)(NSString *obj))success;
++ (void)asyncUploadImage:(UIImage *)image originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSString *name, UploadImageState state))complete;
+
+/**
+同步单张图片上传
+
+@param image 图片
+@param originalPhoto 是否原图
+@param complete 回调
+*/
++ (void)syncUploadImage:(UIImage *)image originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSString *name, UploadImageState state))complete;
+
+/**
+异步多张图片上传
+
+@param images 图片数组
+@param originalPhoto 是否原图
+@param complete 回调
+*/
++ (void)asyncUploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete;
+
+/**
+同步多张图片上传
+
+@param images 图片数组
+@param originalPhoto 是否原图
+@param complete 回调
+*/
++ (void)syncUploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete;
 
 ```
 

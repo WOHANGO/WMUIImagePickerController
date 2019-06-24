@@ -9,19 +9,49 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, UploadImageState) {
+    UploadImageFailed   = 0,
+    UploadImageSuccess  = 1
+};
+
 @interface AliOSSUpload : NSObject
 
 @property (nonatomic, assign) BOOL printBool;    //是否打印,默认NO
 
-+ (instancetype)shareInstance;
+/**
+ 异步单张图片上传
+ 
+ @param image 图片
+ @param originalPhoto 是否原图
+ @param complete 回调
+ */
++ (void)asyncUploadImage:(UIImage *)image originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSString *name, UploadImageState state))complete;
 
 /**
- 上传图片到阿里OSS
-
- @param imageArr 图片数组
- @param OriginalPhoto 是否为原图
- @param success 上传成功，返回url，失败返回：-1
+ 同步单张图片上传
+ 
+ @param image 图片
+ @param originalPhoto 是否原图
+ @param complete 回调
  */
-- (void)uploadImage:(NSArray<UIImage *> *)imageArr originalPhoto:(BOOL)OriginalPhoto success:(void (^)(NSString *obj))success;
++ (void)syncUploadImage:(UIImage *)image originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSString *name, UploadImageState state))complete;
+
+/**
+ 异步多张图片上传
+ 
+ @param images 图片数组
+ @param originalPhoto 是否原图
+ @param complete 回调
+ */
++ (void)asyncUploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete;
+
+/**
+ 同步多张图片上传
+ 
+ @param images 图片数组
+ @param originalPhoto 是否原图
+ @param complete 回调
+ */
++ (void)syncUploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete;
 
 @end

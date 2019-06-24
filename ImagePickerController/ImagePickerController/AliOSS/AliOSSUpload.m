@@ -8,7 +8,7 @@
 
 #import "AliOSSUpload.h"
 #import <AliyunOSSiOS/OSSService.h>
-#import "WZHOSSAuthCredentialProvider.h"
+#import "WMUIOSSAuthCredentialProvider.h"
 #import "IHUtility.h"
 #import <TZImagePickerController.h>
 
@@ -30,8 +30,8 @@ OSSClient * client;
         _upload = [[AliOSSUpload alloc] init];
         //移动终端是一个不受信任的环境，把AccessKeyId和AccessKeySecret直接保存在终端用来加签请求，存在极高的风险。建议只在测试时使用明文设置模式，业务应用推荐使用STS鉴权模式或自签名模式,此demo使用STS鉴权模式
         //STS鉴权模式
-        //由于我的鉴权服务器含有请求头，阿里提供的sdk不能用请求头，所以我自己重新写了OSSAuthCredentialProvider，命名为：WZHOSSAuthCredentialProvider，这鉴权服务器实际情况实际分析
-        id<OSSCredentialProvider> credential = [[WZHOSSAuthCredentialProvider alloc] initWithAuthServerUrl:@"<鉴权服务器url>"];
+        //由于我的鉴权服务器含有请求头，阿里提供的sdk不能用请求头，所以我自己重新写了OSSAuthCredentialProvider，命名为：WMUIOSSAuthCredentialProvider，这鉴权服务器实际情况实际分析
+        id<OSSCredentialProvider> credential = [[WMUIOSSAuthCredentialProvider alloc] initWithAuthServerUrl:@"<鉴权服务器url>"];
         client = [[OSSClient alloc] initWithEndpoint:AliYunHost credentialProvider:credential];
         OSSClientConfiguration *conf = [OSSClientConfiguration new];
         conf.maxRetryCount = 3; // 网络请求遇到异常失败后的重试次数
@@ -58,88 +58,90 @@ OSSClient * client;
          **/
         
         /**
-        //直接设置STSToken,阿里云官方不建议使用,会出现警告
-        id<OSSCredentialProvider> credential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:AccessKey secretKey:SecretKey];
-        client = [[OSSClient alloc] initWithEndpoint:AliYunHost credentialProvider:credential];
+         //直接设置STSToken,阿里云官方不建议使用,会出现警告
+         id<OSSCredentialProvider> credential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:AccessKey secretKey:SecretKey];
+         client = [[OSSClient alloc] initWithEndpoint:AliYunHost credentialProvider:credential];
          **/
         
     });
     return _upload;
 }
-- (void)uploadImage:(NSArray<UIImage *> *)imageArr originalPhoto:(BOOL)OriginalPhoto success:(void (^)(NSString *obj))success {
-    NSMutableArray *publicArray = [[NSMutableArray alloc] init];
-    NSMutableArray *pickArray = [[NSMutableArray alloc] init];
-    if(imageArr.count > 0) {
-        for(id data in imageArr) {
-            if([data isKindOfClass:[NSString class]]) {
-                [publicArray addObject:data];
-            }else if ([data isKindOfClass:[UIImage class]]) {
-                NSMutableDictionary *pictureDict = [[NSMutableDictionary alloc]init];
-                [pictureDict setObject:data forKey:[NSString stringWithFormat:@"%ld",(long)[imageArr indexOfObject:data]]];
-                [pickArray addObject:pictureDict];
+- (void)uploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto isAsync:(BOOL)isAsync complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete {
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    queue.maxConcurrentOperationCount = images.count;
+    
+    NSMutableArray *callBackNames = [NSMutableArray arrayWithCapacity:1];
+    for (int i = 0; i < images.count; i ++) {
+        UIImage *image = images[i];
+        if (image) {
+            NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+                //任务执行
+                OSSPutObjectRequest *put = [OSSPutObjectRequest new];
+                put.contentType=@"image/jpeg";
+                put.bucketName = BucketName;
+                NSData *data;
+                NSData *data1 = UIImageJPEGRepresentation(image, 1);
+                float length1 = [data1 length] / 1024;
+                if (length1 < 400) {
+                    data = UIImageJPEGRepresentation(image, 1);
+                }else {
+                    if (originalPhoto) {
+                        data = UIImageJPEGRepresentation(image, 1);
+                    }else {
+                        data = UIImageJPEGRepresentation(image, 0.6);
+                    }
+                }
+                NSString *imageName = [NSString stringWithFormat:@"ios/%@%d.jpg",[IHUtility getTransactionID],i];  //加“i”防止数组图片重名
+                put.objectKey = imageName;
+                [callBackNames addObject:[NSString stringWithFormat:@"%@%@", ImageHeaderUrl, imageName]];
+                put.uploadingData = data;
+                OSSTask * putTask = [client putObject:put];
+                [putTask waitUntilFinished]; // 阻塞直到上传完成
+                if (!putTask.error) {
+                    NSLog(@"upload object success!");
+                } else {
+                    NSLog(@"upload object failed, error: %@" , putTask.error);
+                }
+                if (isAsync) {
+                    if (image == images.lastObject) {
+                        NSLog(@"upload object finished!");
+                        if (complete) {
+                            complete([NSArray arrayWithArray:callBackNames] ,UploadImageSuccess);
+                        }
+                    }
+                }
+            }];
+            if (queue.operations.count != 0) {
+                [operation addDependency:queue.operations.lastObject];
             }
+            [queue addOperation:operation];
         }
     }
-    for (int i = 0; i < pickArray.count; i ++) {
-        NSDictionary *imgDictionary = [pickArray objectAtIndex:i];
-        NSArray *imgValue = [imgDictionary allValues];
-        UIImage *image1 = [imgValue objectAtIndex:0];
-        UIImage *image = [IHUtility rotateAndScaleImage:image1 maxResolution:(int)[UIScreen mainScreen].bounds.size.width * 2];
-        OSSPutObjectRequest *put = [OSSPutObjectRequest new];
-        put.contentType=@"image/jpeg";
-        put.bucketName = BucketName;
-        NSData *data;
-        NSData *data1 = UIImageJPEGRepresentation(image, 1);
-        float length1 = [data1 length] / 1024;
-        if (length1 < 400) {
-            data = UIImageJPEGRepresentation(image, 1);
-        }else {
-            if (OriginalPhoto) {
-                data = UIImageJPEGRepresentation(image, 1);
-            }else {
-                data = UIImageJPEGRepresentation(image, 0.6);
-            }
+    if (!isAsync) {
+        [queue waitUntilAllOperationsAreFinished];
+        if (complete) {
+            complete([NSArray arrayWithArray:callBackNames], UploadImageSuccess);
         }
-        NSString *imgName=[NSString stringWithFormat:@"ios/%@%d.jpg",[IHUtility getTransactionID],i];  //加“i”防止数组图片重名
-        
-        put.objectKey = imgName;
-        put.uploadingData = data; // 直接上传NSData
-        put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
-            if (self.printBool) {
-                NSLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);
-            }
-        };
-        
-        if (!client) {
-            id<OSSCredentialProvider> credential = [[WZHOSSAuthCredentialProvider alloc] initWithAuthServerUrl:@"<鉴权服务器url>"];
-            client = [[OSSClient alloc] initWithEndpoint:AliYunHost credentialProvider:credential];
-            OSSClientConfiguration *conf = [OSSClientConfiguration new];
-            conf.maxRetryCount = 3; // 网络请求遇到异常失败后的重试次数
-            conf.timeoutIntervalForRequest = 15; // 网络请求的超时时间
-            conf.timeoutIntervalForResource = 24 * 60 * 60; // 允许资源传输的最长时间
-            client = [[OSSClient alloc] initWithEndpoint:AliYunHost credentialProvider:credential clientConfiguration:conf];
-        }
-        OSSTask * putTask = [client putObject:put];
-        
-        [putTask continueWithBlock:^id(OSSTask *task) {
-            NSString *str = [NSString string];
-            if (!task.error) {
-                str = [NSString stringWithFormat:@"%@%@", ImageHeaderUrl, imgName];
-                if (self.printBool) {
-                    NSLog(@"upload object success!，url = %@",str);
-                }
-            }else {
-                str = @"-1";
-                if (self.printBool) {
-                    NSLog(@"upload object failed, error: %@" , task.error);
-                }
-            }
-            success(str);
-            return nil;
-        }];
     }
 }
-
-
-
++ (void)asyncUploadImage:(UIImage *)image originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSString *name, UploadImageState state))complete {
+    [[AliOSSUpload shareInstance] uploadImages:@[image] originalPhoto:originalPhoto isAsync:YES complete:^(NSArray<NSString *> *names, UploadImageState state) {
+        if (complete) {
+            complete(names[0], state);
+        }
+    }];
+}
++ (void)syncUploadImage:(UIImage *)image originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSString *name, UploadImageState state))complete {
+    [[AliOSSUpload shareInstance] uploadImages:@[image] originalPhoto:originalPhoto isAsync:NO complete:^(NSArray<NSString *> *names, UploadImageState state) {
+        if (complete) {
+            complete(names[0], state);
+        }
+    }];
+}
++ (void)asyncUploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete {
+    [[AliOSSUpload shareInstance] uploadImages:images originalPhoto:originalPhoto isAsync:YES complete:complete];
+}
++ (void)syncUploadImages:(NSArray<UIImage *> *)images originalPhoto:(BOOL)originalPhoto complete:(void(^)(NSArray<NSString *> *names, UploadImageState state))complete {
+    [[AliOSSUpload shareInstance] uploadImages:images originalPhoto:originalPhoto isAsync:NO complete:complete];
+}
 @end
