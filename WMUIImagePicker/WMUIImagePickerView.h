@@ -1,9 +1,9 @@
 //
-//  WZHImagePickerView.h
-//  WUIKit
+//  WMUIImagePickerView.h
+//  WMUIKit
 //
-//  Created by 吳梓杭 on 3/9/18.
-//  Copyright © 2018年 吳梓杭. All rights reserved.
+//  Created by 吳梓杭 on 27/11/2018.
+//  Copyright © 2018 吳梓杭. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -11,23 +11,27 @@
 /**
  ImagePicker类型
  
- - WZHImagePickerTypeDefault: 默认样式，不创建列表
- - WZHImagePickerTypeTakePhoto: 相机
- - WZHImagePickerTypeAlbum: 相册
- - WZHImagePickerTypeCollectionView: collcetionView样式
- - WZHImagePickerTypelongPressGestureCollectionView: collcetionView样式,含有长按
+ - WMUIImagePickerTypeDefault: 默认样式，不创建列表
+ - WMUIImagePickerTypeTakePhoto: 相机
+ - WMUIImagePickerTypeAlbum: 相册
+ - WMUIImagePickerTypeCollectionView: collcetionView样式
+ - WMUIImagePickerTypelongPressGestureCollectionView: collcetionView样式,含有长按
+ - WMUIImagePickerTypeHorizontalCollectionView: collcetionView横向滚动样式
+ - WMUIImagePickerTypelongPressGestureHorizontalCollectionView: collcetionView横向滚动样式,含有长按
  */
-typedef NS_ENUM(NSInteger, WZHImagePickerType) {
-    WZHImagePickerTypeDefault,
-    WZHImagePickerTypeTakePhoto,
-    WZHImagePickerTypeAlbum,
-    WZHImagePickerTypeCollectionView,
-    WZHImagePickerTypelongPressGestureCollectionView,
+typedef NS_ENUM(NSInteger, WMUIImagePickerType) {
+    WMUIImagePickerTypeDefault,
+    WMUIImagePickerTypeTakePhoto,
+    WMUIImagePickerTypeAlbum,
+    WMUIImagePickerTypeCollectionView,
+    WMUIImagePickerTypelongPressGestureCollectionView,
+    WMUIImagePickerTypeHorizontalCollectionView,
+    WMUIImagePickerTypelongPressGestureHorizontalCollectionView,
 };
 
 /**
  collectionView选择回调
-
+ 
  @param collectionPhotos collectionView选择回调
  */
 typedef void(^myCollectionViewPickerBlock)(NSArray<UIImage *> *collectionPhotos, BOOL isSelectOriginalPhoto);
@@ -46,8 +50,12 @@ typedef void(^myAlbumsPickerBlock)(NSArray<UIImage *> *photos, BOOL isSelectOrig
  */
 typedef void(^myPhotographBlock)(UIImage *cropImage);
 
-@interface WZHImagePickerView : UIView
+@interface WMUIImagePickerView : UIView
 
+/**
+ collectionViewCell的大小,默认 CGSizeMake((WMUIScreenWidth - 50) / 4, (WMUIScreenWidth - 50) / 4)
+ */
+@property (nonatomic, assign) CGSize cellSize;
 /**
  collcetionView下选择回调
  */
@@ -124,6 +132,11 @@ typedef void(^myPhotographBlock)(UIImage *cropImage);
  裁剪直径，默认self.size.width
  */
 @property (nonatomic, assign) float diameter;
+
+/**
+ 是否只能拍照
+ */
+@property (nonatomic, assign) BOOL photographOnly;
 
 
 - (instancetype)initWithType:(NSInteger)type;

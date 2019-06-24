@@ -1,16 +1,16 @@
 
 //
-//  WZHImagePickerCollectionViewCell.m
-//  TZImagePickerController
+//  WMUIImagePickerCollectionViewCell.m
+//  WMUIKit
 //
-//  Created by 吳梓杭 on 4/5/18.
-//  Copyright © 2018年 吳梓杭. All rights reserved.
+//  Created by 吳梓杭 on 27/11/2018.
+//  Copyright © 2018 吳梓杭. All rights reserved.
 //
 
-#import "WZHImagePickerCollectionViewCell.h"
-#import "WZHImageMacro.h"
+#import "WMUIImagePickerCollectionViewCell.h"
+#import "WMUIImageMacro.h"
 
-@implementation WZHImagePickerCollectionViewCell
+@implementation WMUIImagePickerCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -57,12 +57,12 @@
     if (!_deleteBtn) {
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_deleteBtn setImage:[UIImage imageNamed:@"To_choose"] forState:UIControlStateNormal];
-        _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(-17, 0, 0, -17);
+        _deleteBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -13);
         _deleteBtn.alpha = 0.6;
         [self addSubview:_deleteBtn];
         [_deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.equalTo(self);
-            make.size.mas_equalTo(CGSizeMake(36, 36));
+            make.size.mas_equalTo(CGSizeMake(32, 32));
         }];
     }
     return _deleteBtn;
@@ -89,15 +89,9 @@
 
 - (void)setAsset:(id)asset {
     _asset = asset;
-    if ([asset isKindOfClass:[PHAsset class]]) {
-        PHAsset *phAsset = asset;
-        _videoImageView.hidden = phAsset.mediaType != PHAssetMediaTypeVideo;
-        _gifLable.hidden = ![[phAsset valueForKey:@"filename"] containsString:@"GIF"];
-    } else if ([asset isKindOfClass:[ALAsset class]]) {
-        ALAsset *alAsset = asset;
-        _videoImageView.hidden = ![[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
-        _gifLable.hidden = YES;
-    }
+    PHAsset *phAsset = asset;
+    _videoImageView.hidden = phAsset.mediaType != PHAssetMediaTypeVideo;
+    _gifLable.hidden = ![[phAsset valueForKey:@"filename"] containsString:@"GIF"];
 }
 
 - (void)setRow:(NSInteger)row {
@@ -109,13 +103,13 @@
     UIView *snapshotView = [[UIView alloc]init];
     UIView *cellSnapshotView = nil;
     
-    CGSize size = CGSizeMake((kUIScreenWidth - 50) / 4, (kUIScreenWidth - 50) / 4);
+    CGSize size = CGSizeMake((WMUIScreenWidth - 50) / 4, (WMUIScreenWidth - 50) / 4);
     UIGraphicsBeginImageContextWithOptions(size, self.opaque, 0);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * cellSnapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     cellSnapshotView = [[UIImageView alloc]initWithImage:cellSnapshotImage];
-
+    
     snapshotView.frame = CGRectMake(0, 0, cellSnapshotView.frame.size.width, cellSnapshotView.frame.size.height);
     cellSnapshotView.frame = CGRectMake(0, 0, cellSnapshotView.frame.size.width, cellSnapshotView.frame.size.height);
     cellSnapshotView.layer.cornerRadius = 4.f;

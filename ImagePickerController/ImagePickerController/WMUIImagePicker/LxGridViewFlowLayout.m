@@ -4,8 +4,8 @@
 //
 
 #import "LxGridViewFlowLayout.h"
-#import "WZHImagePickerCollectionViewCell.h"
-#import "WZHImageMacro.h"
+#import "WMUIImagePickerCollectionViewCell.h"
+#import "WMUIImageMacro.h"
 
 #define stringify   __STRING
 
@@ -177,7 +177,7 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
         {
             if (_displayLink == nil) {
                 _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkTriggered:)];
-                _displayLink.frameInterval = 6;
+//                _displayLink.frameInterval = 6;
                 [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
                 
                 _remainSecondsToBeginEditing = MIN_PRESS_TO_BEGIN_EDITING_DURATION;
@@ -194,7 +194,7 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             }
             
             UICollectionViewCell *sourceCollectionViewCell = [self.collectionView cellForItemAtIndexPath:_movingItemIndexPath];
-            WZHImagePickerCollectionViewCell *sourceCell = (WZHImagePickerCollectionViewCell *)sourceCollectionViewCell;
+            WMUIImagePickerCollectionViewCell *sourceCell = (WMUIImagePickerCollectionViewCell *)sourceCollectionViewCell;
             
             _beingMovedPromptView = [[UIView alloc]initWithFrame:CGRectOffset(sourceCollectionViewCell.frame, -10, -10)];
             _beingMovedPromptView.tz_width += 20;

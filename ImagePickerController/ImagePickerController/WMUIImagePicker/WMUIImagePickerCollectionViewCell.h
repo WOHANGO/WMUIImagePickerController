@@ -1,14 +1,14 @@
 //
-//  WZHImagePickerCollectionViewCell.h
-//  TZImagePickerController
+//  WMUIImagePickerCollectionViewCell.h
+//  WMUIKit
 //
-//  Created by 吳梓杭 on 4/5/18.
-//  Copyright © 2018年 吳梓杭. All rights reserved.
+//  Created by 吳梓杭 on 27/11/2018.
+//  Copyright © 2018 吳梓杭. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WZHImagePickerCollectionViewCell : UICollectionViewCell
+@interface WMUIImagePickerCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImageView *videoImageView;

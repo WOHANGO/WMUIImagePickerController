@@ -1,14 +1,14 @@
 //
-//  WZHOSSAuthCredentialProvider.m
+//  WMUIOSSAuthCredentialProvider.m
 //  ImagePickerController
 //
 //  Created by 吳梓杭 on 2018/6/21.
 //  Copyright © 2018年 吳梓杭. All rights reserved.
 //
 
-#import "WZHOSSAuthCredentialProvider.h"
+#import "WMUIOSSAuthCredentialProvider.h"
 
-@implementation WZHOSSAuthCredentialProvider
+@implementation WMUIOSSAuthCredentialProvider
 
 - (instancetype)initWithAuthServerUrl:(NSString *)authServerUrl {
     return [self initWithAuthServerUrl:authServerUrl responseDecoder:nil];

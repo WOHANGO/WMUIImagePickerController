@@ -1,5 +1,5 @@
 //
-//  WZHOSSAuthCredentialProvider.h
+//  WMUIOSSAuthCredentialProvider.h
 //  ImagePickerController
 //
 //  Created by 吳梓杭 on 2018/6/21.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AliyunOSSiOS/OSSService.h>
 
-@interface WZHOSSAuthCredentialProvider : OSSFederationCredentialProvider
+@interface WMUIOSSAuthCredentialProvider : OSSFederationCredentialProvider
 
 - (instancetype _Nullable )initWithAuthServerUrl:(NSString *_Nullable)authServerUrl;
 - (instancetype _Nullable )initWithAuthServerUrl:(NSString *_Nullable)authServerUrl responseDecoder:(nullable OSSResponseDecoderBlock)decoder;
